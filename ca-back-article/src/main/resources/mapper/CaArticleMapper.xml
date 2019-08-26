@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miracle.ca.back.article.mapper.CaArticleMapper">
+  <resultMap id="BaseResultMap" type="com.miracle.ca.back.article.entity.CaArticle">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="main" jdbcType="VARCHAR" property="main" />
+    <result column="html_content" jdbcType="VARCHAR" property="htmlContent" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="conmment_list" jdbcType="VARCHAR" property="conmmentList" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+
+
+  <insert id="upload"  keyProperty="article_id" useGeneratedKeys="true">
+    INSERT INTO ca_article (
+      title,
+      main,
+      html_content,
+      comment_num,
+      conmment_list,
+      user,
+      create_time
+    )
+    VALUES
+      (
+        #{title},
+        #{main},
+        #{htmlContent},
+        #{commentNum},
+        #{conmmentList},
+        #{user},
+        #{createTime}
+      )
+  </insert>
+
+  <select id="getArticle" resultType="CaArticle">
+    SELECT
+      a.article_id,
+      a.title,
+      a.main,
+      a.comment_num
+    FROM
+      ca_article AS a
+    LIMIT
+      #{offset},5
+  </select>
+
+  <select id="getArticleById" resultType="CaArticle">
+    SELECT
+      a.article_id,
+      a.title,
+      a.main,
+      a.html_content,
+      a.comment_num,
+      a.conmment_list,
+      a.user,
+      a.create_time
+    FROM
+      ca_article AS a
+    WHERE
+      a.article_id = #{id}
+  </select>
+</mapper>

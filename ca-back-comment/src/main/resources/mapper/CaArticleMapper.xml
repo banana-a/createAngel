@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miracle.ca.back.comment.mapper.CaArticleMapper">
+  <resultMap id="BaseResultMap" type="com.miracle.ca.back.comment.entity.CaArticle">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="conmment_list" jdbcType="VARCHAR" property="conmmentList" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="main" jdbcType="LONGVARCHAR" property="main" />
+    <result column="html_content" jdbcType="LONGVARCHAR" property="htmlContent" />
+  </resultMap>
+
+  <update id="addCommentNum">
+    UPDATE
+      ca_article
+    SET
+      comment_num = comment_num + 1
+    WHERE article_id = #{articleId}
+  </update>
+
+</mapper>

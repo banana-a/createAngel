@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://120.79.85.200:3306/ca?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      # MySQL 8.x: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+mybatis:
+  type-aliases-package: com.miracle.ca.back.article.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  tomcat:
+    max-http-header-size=8192:
+  port: 8000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miracle.ca.back.article.mapper.CaUserMapper">
+  <resultMap id="BaseResultMap" type="com.miracle.ca.back.article.entity.CaUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="username" jdbcType="INTEGER" property="username" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+  </resultMap>
+
+  <select id="selectUser" resultType="CaUser">
+    SELECT
+      a.username
+    FROM
+      ca_user AS a
+    WHERE
+      a.openid = #{openid}
+  </select>
+
+  <insert id="insertUser">
+    INSERT INTO ca_user (
+      openid
+    )
+    VALUES
+      (
+        #{openid}
+      )
+  </insert>
+
+</mapper>

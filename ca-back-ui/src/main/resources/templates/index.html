@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>Simple example - Editor.md examples</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/editormd.css" />
+        <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="css/bootstrap/bootstrap.css" />
+    </head>
+	<style>
+		.mytxt {
+			color:#333;
+			line-height:normal;
+			font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+			font-style:normal;
+			font-variant:normal;
+			font-size-adjust:none;
+			font-stretch:normal;
+			font-weight:normal;
+			margin-top:0px;
+			margin-bottom:0px;
+			margin-left:0px;
+			padding-top:4px;
+			padding-right:4px;
+			padding-bottom:4px;
+			padding-left:4px;
+			font-size:15px;
+			outline-width:medium;
+			outline-style:none;
+			outline-color:invert;
+			border-top-left-radius:3px;
+			border-top-right-radius:3px;
+			border-bottom-left-radius:3px;
+			border-bottom-right-radius:3px;
+			text-shadow:0px 1px 2px #fff;
+			background-attachment:scroll;
+			background-repeat:repeat-x;
+			background-position-x:left;
+			background-position-y:top;
+			background-size:auto;
+			background-origin:padding-box;
+			background-clip:border-box;
+			background-color:rgb(255,255,255);
+			margin-right:8px;
+			margin-bottom: 2%;
+			border-top-color:#ccc;
+			border-right-color:#ccc;
+			border-bottom-color:#ccc;
+			border-left-color:#ccc;
+			border-top-width:1px;
+			border-right-width:1px;
+			border-bottom-width:1px;
+			border-left-width:1px;
+			border-top-style:solid;
+			border-right-style:solid;
+			border-bottom-style:solid;
+			border-left-style:solid;
+		}
+	</style>
+    <body>
+        <div id="layout">
+            <header>
+                <h1>新增文章</h1>
+            </header>
+			<form>
+				<input id="title" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入标题"></input>
+			</form>
+            <textarea id="main" class="mytxt" type="text" style="margin-left: 5%;width: 30%;padding-bottom: 5%" placeholder="请输入主要内容"></textarea>
+            <div class="editormd" id="test-editormd">
+                <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="content"></textarea>
+                <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                <textarea class="editormd-html-textarea" name="editormd-html-textarea" id="htmlContent"></textarea>
+            </div>
+            <button id="back" class="btn btn-light" style="float: right;margin-right: 5%">返回</button>
+            <button id="submitBtn" class="btn btn-info" style="float: right;margin-right: 5%">提交</button>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/editormd.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+			var testEditor;
+            $(function() {
+                editormd("test-editormd", {
+                    width   : "90%",
+                    height  : 640,
+                    syncScrolling : "single",
+                    tocm : true, // Using [TOCM]
+                    tex : true, // 开启科学公式TeX语言支持，默认关闭
+                    flowChart : true, // 开启流程图支持，默认关闭
+                    imageUpload : true,
+                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL : "uploadfile",
+                    saveHTMLToTextarea : true
+                });
+            });
+
+            $("#submitBtn").click(
+                function () {
+                    submitblog();
+                }
+            )
+            function submitblog() {
+                var  title = $("#title").val();
+                var main = $("#main").val();
+                var htmlContent = $("#htmlContent").val();
+                var param = {
+                        title: title,
+                        main:main,
+                        htmlContent:htmlContent}
+                    ;
+                $.ajax({
+                    url: "http://localhost:8000/uploadArticle",
+                    data: JSON.stringify(param),
+                    type: "post",
+                    dataType:"json",
+                    contentType: "application/json;charset-UTF-8",
+                    header:{'Access-Control-Allow-Origin':"*",'Access-Control-Allow-Methods':'POST,GET'},
+                    success:function () {
+                        alert("发布成功");
+                    },
+                    error:function () {
+                        alert("发布失败");
+                    }
+                })
+            }
+        </script>
+
+    </body>
+</html>
