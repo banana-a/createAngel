@@ -31,6 +31,7 @@ public class SliderController {
         String threeRoad = recieve.getThreeRoad();
         String threeSrc = recieve.getThreeSrc();
         System.out.println(threeRoad);
+        System.out.println("--------------------------------------------");
         if (!oneRoad.equals("") && !oneSrc.equals("")) {
             sliderService.updateSlider(1, oneRoad, oneSrc);
         }

@@ -60,9 +60,45 @@
 	</style>
     <body>
         <div id="layout">
+
             <header>
+                <h1>删除文章</h1>
+            </header>
+            <form>
+                <input id="delTitle" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入要删除文章的标题"></input>
+            </form>
+            <button id="deleteBtn" class="btn btn-danger" style="margin-left: 5%">删除</button>
+
+
+            <header style="margin-top: 5%;">
+                <h1>删除一级评论</h1>
+            </header>
+            <form>
+                <input id="delCTitle" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入要删除评论所在文章的标题"></input>
+            </form>
+            <form>
+                <input id="delComment" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入要删除评论的用户名"></input>
+            </form>
+            <button id="deleteCommentBtn" class="btn btn-danger" style="margin-left: 5%">删除</button>
+            
+            
+            <header style="margin-top: 5%;">
+                <h1>禁言用户</h1>
+            </header>
+            <form>
+                <input id="stopUser" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入要禁言的用户名"></input>
+            </form>
+            <form>
+                <input id="stopTime" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入禁言时长（单位秒）"></input>
+            </form>
+            <button id="stopBtn" class="btn btn-danger" style="margin-left: 5%">禁言</button>
+
+
+            <header style="margin-top: 5%;">
                 <h1>新增文章</h1>
             </header>
+                
+            
 			<form>
 				<input id="title" class="mytxt" type="text" style="margin-left: 5%;width: 30%" placeholder="请输入标题"></input>
 			</form>
@@ -75,6 +111,9 @@
             <button id="back" class="btn btn-light" style="float: right;margin-right: 5%">返回</button>
             <button id="submitBtn" class="btn btn-info" style="float: right;margin-right: 5%">提交</button>
         </div>
+        
+        
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/editormd.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -95,6 +134,8 @@
                 });
             });
 
+
+            //发文章
             $("#submitBtn").click(
                 function () {
                     submitblog();
@@ -121,6 +162,79 @@
                     },
                     error:function () {
                         alert("发布失败");
+                    }
+                })
+            }
+
+            
+            //删评论
+            $("#deleteCommentBtn").click(
+                function () {
+                    deleteComment();
+                }
+            )
+            function deleteComment() {
+                var delCTitle = $("#delCTitle").val();
+                var delUsername = $("#delComment").val();
+                $.ajax({
+                    url: "http://52.81.65.189:9000/delCommentOne/" + delCTitle + "/" + delUsername,
+                    type: "post",
+                    dataType:"json",
+                    contentType: "application/json;charset-UTF-8",
+                    header:{'Access-Control-Allow-Origin':"*",'Access-Control-Allow-Methods':'POST,GET'},
+                    success:function () {
+                        alert("删除成功");
+                    },
+                    error:function () {
+                        alert("删除失败");
+                    }
+                })
+            }
+
+
+            //删文章
+            $("#deleteBtn").click(
+                function () {
+                    deleteArticle();
+                }
+            )
+            function deleteArticle() {
+                var delTitle = $("#delTitle").val();
+                $.ajax({
+                    url: "http://52.81.65.189:8000/delCommentOne/" + delTitle,
+                    type: "post",
+                    dataType:"json",
+                    contentType: "application/json;charset-UTF-8",
+                    header:{'Access-Control-Allow-Origin':"*",'Access-Control-Allow-Methods':'POST,GET'},
+                    success:function () {
+                        alert("删除成功");
+                    },
+                    error:function () {
+                        alert("删除失败");
+                    }
+                })
+            }
+
+            //禁言用户
+            $("#stopBtn").click(
+                function () {
+                    stopUser();
+                }
+            )
+            function stopUser() {
+                var stopUser = $("#stopUser").val();
+                var stopTime = $("#stopTime").val();
+                $.ajax({
+                    url: "http://52.81.65.189:8000/stopUser/" + stopUser + "/" + stopTime,
+                    type: "post",
+                    dataType:"json",
+                    contentType: "application/json;charset-UTF-8",
+                    header:{'Access-Control-Allow-Origin':"*",'Access-Control-Allow-Methods':'POST,GET'},
+                    success:function () {
+                        alert("禁言成功");
+                    },
+                    error:function () {
+                        alert("禁言失败");
                     }
                 })
             }

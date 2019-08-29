@@ -52,7 +52,14 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.3.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -61,7 +68,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <classifier>exec</classifier>
                     <mainClass>com.miracle.ca.back.comment.CommentApplication</mainClass>
                 </configuration>
             </plugin>

@@ -16,7 +16,7 @@
   </resultMap>
 
 
-  <insert id="upload"  keyProperty="article_id" useGeneratedKeys="true">
+  <insert id="upload">
     INSERT INTO ca_article (
       title,
       main,

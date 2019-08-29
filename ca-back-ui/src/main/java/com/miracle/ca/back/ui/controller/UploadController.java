@@ -31,11 +31,9 @@ public class UploadController {
         if(!upload.exists()) upload.mkdirs();
         String fileName = dropFile.getOriginalFilename();
         String filePath = upload.getPath();
+        System.out.println(filePath);
         file = new File(filePath,fileName);
         dropFile.transferTo(file);
         return "200";
     }
-
-
-
 }
