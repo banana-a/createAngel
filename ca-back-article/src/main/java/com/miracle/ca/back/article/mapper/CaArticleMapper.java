@@ -11,4 +11,5 @@ public interface CaArticleMapper extends MyMapper<CaArticle> {
     public void upload(CaArticle caArticle);
     public List<CaArticle> getArticle(int offset);
     public CaArticle getArticleById(int id);
+    public void deleteArticle(String title);
 }

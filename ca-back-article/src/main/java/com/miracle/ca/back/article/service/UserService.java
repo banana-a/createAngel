@@ -12,11 +12,13 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -31,6 +33,9 @@ public class UserService {
 
     @Autowired
     CaUserMapper userMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     public String doLogin(String code) {
 
@@ -102,4 +107,7 @@ public class UserService {
         }
     }
 
+    public void stopUser(String username,int time){
+        redisTemplate.opsForValue().set(username, "", time, TimeUnit.SECONDS);
+    }
 }

@@ -10,7 +10,12 @@ spring:
       test-on-borrow: true
       # MySQL 8.x: com.mysql.cj.jdbc.Driver
       driver-class-name: com.mysql.cj.jdbc.Driver
-
+  redis:
+    database: 0
+    host: 52.81.65.189
+    password:
+    port: 6379
+    timeout: 20000
 
 
 mybatis:
@@ -29,3 +34,6 @@ management:
     web:
       exposure:
         include: "*"
+
+
+

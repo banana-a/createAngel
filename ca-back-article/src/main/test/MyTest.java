@@ -60,4 +60,9 @@ public class MyTest {
         System.out.println(userService.selectUser("oa87X5fIdwaazcbIgynkJfmRtQVI"));
     }
 
+    @Test
+    public void testStop(){
+        userService.stopUser("hello", 100);
+    }
+
 }

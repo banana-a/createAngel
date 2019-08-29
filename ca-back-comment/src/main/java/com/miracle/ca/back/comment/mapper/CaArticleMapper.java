@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CaArticleMapper extends MyMapper<CaArticle> {
     public void addCommentNum(int articleId);
+    public CaArticle getArticleByTitle(String title);
 }

@@ -45,4 +45,8 @@ public class ArticleService {
         return articleMapper.getArticleById(id);
     }
 
+    public void deleteArticle(String title){
+        articleMapper.deleteArticle(title);
+    }
+
 }

@@ -75,4 +75,10 @@
     ORDER BY
       a.id DESC
   </select>
+
+  <delete id="deleteCommentOne">
+    DELETE FROM ca_comment_one WHERE article_id = #{articleId} and username = #{username}
+  </delete>
+
+
 </mapper>

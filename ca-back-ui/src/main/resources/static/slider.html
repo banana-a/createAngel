@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>MSC</title>
-        <link rel="stylesheet" href="../static/assets/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="../static/assets/fonts/ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="../static/assets/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/font-awesome.min.css">
 		
 	</head>
 	<body>
@@ -78,7 +78,7 @@
 				};
 		
     		$.ajax({
-    		    url: "http://127.0.0.1:7000/updateSlider",
+    		    url: "http://52.81.65.189:7000/updateSlider",
     		    type: "post",
                     dataType:"json",
                     contentType: "application/json;charset-UTF-8",
@@ -98,7 +98,7 @@
 				formFile.append("dropFile", fileObj); //加入文件对象   file为传递给后台的参数，可以模仿form中input的name值。
 				var data = formFile;
 				$.ajax({
-					url: "http://127.0.0.1:8080/uploadFile",
+					url: "http://52.81.65.189:5000/uploadFile",
 					data: data,
 					type: "Post",
 					dataType: "json",
@@ -112,7 +112,7 @@
 			}
 		</script>
 		
-		<script src="../static/assets/js/jquery.min.js"></script>
-    <script src="../static/assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 	</body>
 </html>

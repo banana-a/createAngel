@@ -23,4 +23,19 @@
     WHERE article_id = #{articleId}
   </update>
 
+  <select id="getArticleByTitle" resultType="CaArticle">
+    SELECT
+      a.article_id,
+      a.title,
+      a.main,
+      a.html_content,
+      a.comment_num,
+      a.conmment_list,
+      a.user,
+      a.create_time
+    FROM
+      ca_article AS a
+    WHERE
+      a.title = #{title}
+  </select>
 </mapper>

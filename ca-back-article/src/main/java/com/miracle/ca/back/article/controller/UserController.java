@@ -3,10 +3,7 @@ package com.miracle.ca.back.article.controller;
 import com.miracle.ca.back.article.entity.CaUser;
 import com.miracle.ca.back.article.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @program: createAngel
@@ -25,5 +22,11 @@ public class UserController {
     @GetMapping(value = "/getUser")
     public CaUser getUser(@RequestParam String openid){
         return userService.getUser(openid);
+    }
+
+    @PostMapping(value = "/stopUser/{stopUser}/{stopTime}")
+    public String stopUser(@PathVariable String stopUser,@PathVariable int stopTime){
+        userService.stopUser(stopUser, stopTime);
+        return "200";
     }
 }

@@ -12,4 +12,5 @@ public interface CaCommentOneMapper extends MyMapper<CaCommentOne> {
     public List<CaCommentOne> getCommentOne(String id);
     public void addCommentOneNum(int commentId);
     public List<CaCommentOne> getMyComment(String openid);
+    public void deleteCommentOne(int articleId,String username);
 }

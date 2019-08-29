@@ -4,6 +4,7 @@ import com.miracle.ca.back.comment.entity.CaCommentOne;
 import com.miracle.ca.back.comment.mapper.CaArticleMapper;
 import com.miracle.ca.back.comment.mapper.CaCommentOneMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public class CommentOneService {
     @Autowired
     CaArticleMapper articleMapper;
 
+    @Autowired
+    RedisTemplate redisTemplate;
+
     public void doCommentOne(CaCommentOne caCommentOne){
         caCommentOneMapper.insertCommentOne(caCommentOne);
         articleMapper.addCommentNum(caCommentOne.getArticleId());
@@ -35,5 +39,10 @@ public class CommentOneService {
 
     public List<CaCommentOne> getMyComment(String openid){
         return caCommentOneMapper.getMyComment(openid);
+    }
+
+    public void deleteCommentOne(String title,String username){
+        int id = articleMapper.getArticleByTitle(title).getArticleId();
+        caCommentOneMapper.deleteCommentOne(id, username);
     }
 }

@@ -47,4 +47,10 @@ public class ArticleController {
     public String doLogin(@RequestParam String code){
         return userService.doLogin(code);
     }
+
+    @PostMapping(value = "/delArticle/{delTitle}")
+    public String delArtic(@PathVariable String delTitle){
+        articleService.deleteArticle(delTitle);
+        return "200";
+    }
 }

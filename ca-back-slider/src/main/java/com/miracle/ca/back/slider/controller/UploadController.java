@@ -22,6 +22,7 @@ public class UploadController {
 
     @PostMapping(value = "/uploadFile")
     public String uploadFile(@RequestBody MultipartFile dropFile, HttpServletRequest request){
+        System.out.println("---------------------------------------------------------------------");
         System.out.println(request.getSession().getServletContext().getRealPath("/"));
         return "200";
     }

@@ -65,4 +65,8 @@
     WHERE
       a.article_id = #{id}
   </select>
+  <delete id="deleteArticle">
+    DELETE FROM ca_article WHERE title = #{title}
+</delete>
+
 </mapper>
