@@ -49,4 +49,8 @@ public class ArticleService {
         articleMapper.deleteArticle(title);
     }
 
+    public List<CaArticle> getSearch(String title){
+        return articleMapper.getSearch(title);
+    }
+
 }

@@ -53,4 +53,9 @@ public class ArticleController {
         articleService.deleteArticle(delTitle);
         return "200";
     }
+
+    @GetMapping(value = "/getSearch/{title}")
+    public List<CaArticle> getSearch(@PathVariable String title){
+        return articleService.getSearch(title);
+    }
 }
