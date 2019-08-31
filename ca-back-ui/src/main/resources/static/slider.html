@@ -24,6 +24,7 @@
 						<button type="button" class="btn btn-primary" onclick="uploadFile()">Submit</button>
 					</div>
 				  </form>
+					  <p2 id="src"></p2>
 			        <div class="form-group">
 			          <label for="oneRoad">图1路径</label>
 			          <input type="text" class="form-control" id="oneRoad" name="oneRoad">
@@ -87,6 +88,7 @@
     		    crossDomain: true,
     		    success: function(data) {
                     window.alert("修改成功");
+                    document.getElementById("src").innerHTML = "http://52.81.65.189:5000/"
     		    },
     		});
 			}
