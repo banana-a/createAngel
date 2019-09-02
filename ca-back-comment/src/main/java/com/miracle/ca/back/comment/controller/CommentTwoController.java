@@ -35,10 +35,16 @@ public class CommentTwoController {
         for (String s : sensitiveWord) {
             if (caCommentTwo.getComment().contains(s)) return "200";
         }
-        if (redisTemplate.hasKey(caCommentTwo.getUsername())) return "404";
-        if (caCommentTwo.getComment().equals("")) return "404";
-        commentTwoService.insertCommentTwo(caCommentTwo);
-        return "200";
+        try{
+            if (redisTemplate.hasKey(caCommentTwo.getUsername())) return "404";
+        }
+        catch (Exception e){
+
+        }finally {
+            if (caCommentTwo.getComment().equals("")) return "404";
+            commentTwoService.insertCommentTwo(caCommentTwo);
+            return "200";
+        }
     }
 
     @GetMapping(value = "getCommentTwo/{id}")

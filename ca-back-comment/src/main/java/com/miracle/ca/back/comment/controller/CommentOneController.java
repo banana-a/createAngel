@@ -38,10 +38,15 @@ public class CommentOneController {
                 return "200";
             }
         }
-        if (redisTemplate.hasKey(caCommentOne.getUsername())) return "404";
-        if (caCommentOne.getComment().equals("")) return "404";
-        commentOneService.doCommentOne(caCommentOne);
-        return "200";
+        try {
+            if (redisTemplate.hasKey(caCommentOne.getUsername())) return "404";
+        }catch (Exception e){
+
+        }finally {
+            if (caCommentOne.getComment().equals("")) return "404";
+            commentOneService.doCommentOne(caCommentOne);
+            return "200";
+        }
     }
 
     @GetMapping(value = "/getCommentOne/{id}")
